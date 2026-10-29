@@ -407,7 +407,7 @@ html[data-theme="dark"] .btn { color: #07101f; }
   try { qp = new URLSearchParams(location.search).get('lang'); } catch (e) {}
   var lang = (qp === 'en' || qp === 'vi') ? qp : load('lang');
   if (lang !== 'en' && lang !== 'vi') {
-    lang = (navigator.language || '').toLowerCase().indexOf('vi') === 0 ? 'vi' : 'en';
+    lang = 'en';
   }
   var dl = document.getElementById('dl');
   function setLang(l) {
