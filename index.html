@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Portfolio của Nguyễn Đăng Thành, Mobile Developer (Flutter, React Native) | Portfolio of Nguyen Dang Thanh, Mobile Developer.">
+<meta property="og:title" content="Nguyễn Đăng Thành">
+<meta property="og:description" content="Portfolio của Nguyễn Đăng Thành, Mobile Developer (Flutter, React Native) | Portfolio of Nguyen Dang Thanh, Mobile Developer.">
+<meta property="og:type" content="website">
+<meta name="color-scheme" content="light dark">
+<title>Nguyễn Đăng Thành</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: single narrow column, left label rail + right content per section, lots of whitespace. */
+:root {
+  --bg: #f6f6f4;
+  --fg: #16181d;
+  --muted: #5d636e;
+  --line: #dcdde0;
+  --accent: #2f5bea;
+  --chip: #ebecef;
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101216; --fg: #ececee; --muted: #9399a4; --line: #272a31; --accent: #7f9cff; --chip: #1b1e24;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101216; --fg: #ececee; --muted: #9399a4; --line: #272a31; --accent: #7f9cff; --chip: #1b1e24;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.65;
+  padding-inline: 20px; padding-block: 28px 80px;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.wrap { max-width: 860px; margin-inline: auto; }
+
+/* language switching */
+html[data-lang="en"] [lang="vi"], html[data-lang="vi"] [lang="en"] { display: none; }
+
+header.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.ctrl { display: flex; gap: 8px; }
+.ctrl button {
+  font: inherit; color: var(--fg); background: transparent; border: 1px solid var(--line);
+  padding: 4px 10px; cursor: pointer; border-radius: 4px;
+}
+.ctrl button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.ctrl button:hover { border-color: var(--fg); }
+
+.hero { padding-block: 72px 56px; }
+.hero .role { font-family: var(--font-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 16px; }
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.5rem, 8vw, 4.75rem); line-height: 1.02; letter-spacing: -.02em; margin: 0 0 24px; text-wrap: balance; }
+.hero p.lead { max-width: 56ch; font-size: 1.125rem; color: var(--muted); margin: 0 0 28px; }
+.contact { display: flex; flex-wrap: wrap; gap: 8px 24px; font-family: var(--font-mono); font-size: 14px; }
+.contact span, .contact a { display: inline-flex; align-items: center; gap: 8px; }
+.copy { font: inherit; font-size: 12px; background: var(--chip); color: var(--fg); border: 0; padding: 2px 8px; border-radius: 4px; cursor: pointer; }
+.copy:hover { background: var(--line); }
+
+section { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 16px 40px; padding-block: 40px; border-top: 1px solid var(--line); }
+h2 { font-family: var(--font-mono); font-weight: 500; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 6px 0 0; }
+.body { min-width: 0; display: flex; flex-direction: column; gap: 44px; }
+
+.job h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.375rem; line-height: 1.25; margin: 0; text-wrap: balance; }
+.job .meta { display: flex; flex-wrap: wrap; gap: 4px 16px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin: 6px 0 16px; }
+.job .proj { font-weight: 600; margin: 0 0 4px; }
+.job p { margin: 0 0 12px; max-width: 65ch; }
+.job ul { margin: 0 0 14px; padding-left: 1.1rem; max-width: 65ch; }
+.job li { margin-bottom: 6px; }
+.job li::marker { color: var(--muted); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
+.tags li { font-family: var(--font-mono); font-size: 12px; background: var(--chip); padding: 2px 9px; border-radius: 4px; margin: 0; }
+
+.skills { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.skills div { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 8px 20px; align-items: baseline; }
+.skills dt { color: var(--muted); font-size: 14px; }
+.skills dd { margin: 0; }
+
+.edu h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.25rem; margin: 0; }
+.edu .meta { font-family: var(--font-mono); font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+footer { border-top: 1px solid var(--line); padding-top: 24px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+@media (max-width: 640px) {
+  section { grid-template-columns: 1fr; gap: 20px; padding-block: 32px; }
+  .skills div { grid-template-columns: 1fr; gap: 2px; }
+  .hero { padding-block: 48px 40px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ctrl button, .copy { transition: background .15s, border-color .15s; }
+}
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+  <header class="bar">
+    <span>Hà Nội, VN</span>
+    <div class="ctrl">
+      <button type="button" id="btn-lang" aria-label="Switch language / Đổi ngôn ngữ">EN / VI</button>
+      <button type="button" id="btn-theme" aria-label="Toggle theme">◐</button>
+    </div>
+  </header>
+
+  <div class="hero">
+    <p class="role"><span lang="en">Mobile Developer</span><span lang="vi">Lập trình viên Mobile</span></p>
+    <h1>Nguyễn Đăng Thành</h1>
+    <p class="lead">
+      <span lang="en">I build cross-platform mobile apps with Flutter and React Native, from property management systems to fintech tools for small businesses.</span>
+      <span lang="vi">Tôi xây dựng ứng dụng di động đa nền tảng bằng Flutter và React Native, từ hệ thống quản lý bất động sản đến công cụ tài chính cho doanh nghiệp nhỏ.</span>
+    </p>
+    <div class="contact">
+      <span><span id="email">thanhnd2412@gmail.com</span><button type="button" class="copy" id="copy-email"><span lang="en">Copy</span><span lang="vi">Sao chép</span></button></span>
+      <span><span lang="en">Nam Tu Liem, Ha Noi</span><span lang="vi">Nam Từ Liêm, Hà Nội</span></span>
+    </div>
+  </div>
+
+  <section>
+    <h2><span lang="en">About</span><span lang="vi">Giới thiệu</span></h2>
+    <div class="body">
+      <p style="margin:0;max-width:65ch">
+        <span lang="en">My goal is to build professional knowledge and practical skills in the IT industry, learn from experienced colleagues, and contribute real value to company projects. I want to keep growing my abilities and be ready for new challenges.</span>
+        <span lang="vi">Mục tiêu của tôi là tích lũy kiến thức chuyên môn và kỹ năng thực tế trong ngành IT, học hỏi từ các anh chị đi trước và đóng góp giá trị thực cho dự án của công ty. Tôi mong muốn phát triển năng lực bản thân và sẵn sàng đón nhận thử thách mới.</span>
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span lang="en">Experience</span><span lang="vi">Kinh nghiệm</span></h2>
+    <div class="body">
+
+      <article class="job">
+        <h3>Flutter Developer · Heno Technology JSC</h3>
+        <div class="meta"><span>05/2025 – <span lang="en">Present</span><span lang="vi">Hiện tại</span></span></div>
+        <p class="proj"><span lang="en">Real Estate Management System</span><span lang="vi">Hệ thống quản lý bất động sản</span></p>
+        <p>
+          <span lang="en">A cross-platform property management system with mobile apps and web portals for contracts, invoices, apartments, assets and staff task assignment.</span>
+          <span lang="vi">Hệ thống quản lý bất động sản đa nền tảng gồm ứng dụng di động và web portal, quản lý hợp đồng, hóa đơn, căn hộ, tài sản và giao việc cho nhân viên.</span>
+        </p>
+        <ul lang="en">
+          <li>Designed and built new modules, including inventory management and multi-user task assignment, mainly on Flutter mobile with support for related web features.</li>
+          <li>Improved performance through optimization, refactoring and platform upgrades.</li>
+          <li>Configured Flutter flavors for multiple app variants (Admin, Resident, Partner).</li>
+          <li>Set up Firebase Cloud Messaging (FCM) for real-time push notifications across variants.</li>
+          <li>Integrated bank Open APIs for secure payment deep linking to external banking apps.</li>
+        </ul>
+        <ul lang="vi">
+          <li>Thiết kế và phát triển module mới, gồm quản lý kho và giao việc nhiều người dùng, tập trung vào ứng dụng Flutter và hỗ trợ các tính năng web liên quan.</li>
+          <li>Cải thiện hiệu năng thông qua tối ưu, refactor và nâng cấp nền tảng.</li>
+          <li>Cấu hình Flutter flavor cho nhiều phiên bản ứng dụng (Admin, Cư dân, Đối tác).</li>
+          <li>Thiết lập Firebase Cloud Messaging (FCM) để gửi thông báo đẩy theo thời gian thực cho các phiên bản.</li>
+          <li>Tích hợp Open API ngân hàng để mở ứng dụng ngân hàng ngoài qua deep link khi thanh toán.</li>
+        </ul>
+        <ul class="tags"><li>Flutter</li><li>React</li><li>Flavor</li><li>Firebase</li></ul>
+      </article>
+
+      <article class="job">
+        <h3>React Native Developer · Heno Technology JSC</h3>
+        <div class="meta"><span><span lang="en">Fintech platform for small businesses</span><span lang="vi">Nền tảng fintech cho doanh nghiệp nhỏ</span></span></div>
+        <p>
+          <span lang="en">A financial and business management app where small businesses handle sales, inventory, cash flow, e-invoices and reporting in one place.</span>
+          <span lang="vi">Ứng dụng quản lý tài chính và kinh doanh giúp doanh nghiệp nhỏ quản lý bán hàng, kho, dòng tiền, hóa đơn điện tử và báo cáo trên một nền tảng.</span>
+        </p>
+        <ul lang="en">
+          <li>Built and optimized complex UI components, improving performance and user experience.</li>
+          <li>Implemented state management with MobX, handling complex data flows and cache sync with APIs.</li>
+          <li>Built payment flows, including bank account selection and integration with external banking systems.</li>
+          <li>Set up FCM push notifications and integrated bank Open APIs for payment deep linking.</li>
+          <li>Enhanced core modules (Profit Reporting, Tax Declaration, Staff Management, Sales Management) with responsive UX and regulation-compliant tax logic.</li>
+        </ul>
+        <ul lang="vi">
+          <li>Phát triển và tối ưu các UI component phức tạp, cải thiện hiệu năng và trải nghiệm người dùng.</li>
+          <li>Triển khai quản lý state bằng MobX, xử lý luồng dữ liệu phức tạp và đồng bộ cache với API.</li>
+          <li>Xây dựng luồng thanh toán, gồm chọn tài khoản ngân hàng và tích hợp hệ thống ngân hàng bên ngoài.</li>
+          <li>Thiết lập thông báo đẩy FCM và tích hợp Open API ngân hàng cho deep link thanh toán.</li>
+          <li>Nâng cấp các module cốt lõi (Báo cáo lợi nhuận, Kê khai thuế, Quản lý nhân viên, Quản lý bán hàng) với UX linh hoạt và logic thuế đúng quy định.</li>
+        </ul>
+        <ul class="tags"><li>React Native</li><li>MobX</li><li>Firebase</li><li>MVVM</li></ul>
+      </article>
+
+      <article class="job">
+        <h3>Flutter Developer · FPT Information System</h3>
+        <div class="meta"><span>09/2024 – 04/2025</span></div>
+
+        <p class="proj"><span lang="en">Citizen Service App (09–10/2024)</span><span lang="vi">Ứng dụng Dịch vụ công dân (09–10/2024)</span></p>
+        <p>
+          <span lang="en">Helps citizens register and look up administrative procedures. I helped build document management with image and PDF upload on Android and iOS, plus search for procedures such as birth registration, temporary residence and marriage registration.</span>
+          <span lang="vi">Ứng dụng giúp người dân đăng ký và tra cứu thủ tục hành chính. Tôi tham gia xây dựng chức năng quản lý hồ sơ, tải ảnh và PDF trên Android và iOS, cùng tra cứu thủ tục như đăng ký khai sinh, tạm trú, kết hôn.</span>
+        </p>
+        <ul class="tags"><li>Flutter</li><li>Firebase</li><li>Provider</li></ul>
+
+        <p class="proj" style="margin-top:22px"><span lang="en">Insurance Contract Management App (10/2024 – 04/2025)</span><span lang="vi">Ứng dụng Quản lý hợp đồng bảo hiểm (10/2024 – 04/2025)</span></p>
+        <ul lang="en">
+          <li>Built the logic that shows questions to insurance buyers and adjusted the UI to customer requests.</li>
+          <li>Built API calls and data processing.</li>
+          <li>Distributed iOS builds via TestFlight and Android test builds via App Center for testers and QA.</li>
+        </ul>
+        <ul lang="vi">
+          <li>Xây dựng logic hiển thị câu hỏi cho người mua bảo hiểm và chỉnh giao diện theo yêu cầu khách hàng.</li>
+          <li>Xây dựng logic gọi API và xử lý dữ liệu trả về.</li>
+          <li>Phát hành bản iOS qua TestFlight và bản test Android qua App Center cho tester và QA.</li>
+        </ul>
+        <ul class="tags"><li>Flutter</li><li>Firebase</li><li>BLoC</li><li>Clean Architecture</li></ul>
+
+        <p class="proj" style="margin-top:22px"><span lang="en">Internal Real Estate App (10/2024 – 04/2025)</span><span lang="vi">Ứng dụng bất động sản nội bộ (10/2024 – 04/2025)</span></p>
+        <ul lang="en">
+          <li>Built shared functions for the company's app ecosystem: login, account info, switching accounts, settings, and a home page listing accessible sub-apps.</li>
+          <li>Improved UI/UX performance and built common components.</li>
+          <li>Built account transfer to employees and API handling.</li>
+        </ul>
+        <ul lang="vi">
+          <li>Xây dựng các chức năng chung cho hệ sinh thái ứng dụng của công ty: đăng nhập, thông tin tài khoản, đổi tài khoản, cài đặt và trang chủ hiển thị các ứng dụng con được cấp quyền.</li>
+          <li>Cải thiện hiệu năng UI/UX và xây dựng các component dùng chung.</li>
+          <li>Xây dựng chức năng chuyển tài khoản cho nhân viên và xử lý API.</li>
+        </ul>
+        <ul class="tags"><li>Flutter</li><li>Firebase</li><li>BLoC</li><li>Clean Architecture</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2><span lang="en">Skills</span><span lang="vi">Kỹ năng</span></h2>
+    <dl class="body skills" style="margin:0">
+      <div><dt>Frontend</dt><dd>ReactJS, Bootstrap, TailwindCSS</dd></div>
+      <div><dt><span lang="en">Mobile development</span><span lang="vi">Phát triển di động</span></dt><dd>React Native, Flutter</dd></div>
+      <div><dt><span lang="en">Tools</span><span lang="vi">Công cụ</span></dt><dd>Git, Figma, Postman</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2><span lang="en">Education</span><span lang="vi">Học vấn</span></h2>
+    <div class="body edu">
+      <div>
+        <h3>FPT College</h3>
+        <div class="meta">2023 – 2025 · <span lang="en">Information Technology</span><span lang="vi">Công nghệ thông tin</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Nguyễn Đăng Thành</footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  var lang = load('lang');
+  if (lang !== 'en' && lang !== 'vi') {
+    lang = (navigator.language || '').toLowerCase().indexOf('vi') === 0 ? 'vi' : 'en';
+  }
+  function setLang(l) { root.setAttribute('data-lang', l); root.setAttribute('lang', l); lang = l; store('lang', l); }
+  setLang(lang);
+  document.getElementById('btn-lang').addEventListener('click', function () { setLang(lang === 'en' ? 'vi' : 'en'); });
+
+  var saved = load('theme');
+  if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+  document.getElementById('btn-theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next); store('theme', next);
+  });
+
+  document.getElementById('copy-email').addEventListener('click', function () {
+    var el = document.getElementById('email');
+    function select() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    try { navigator.clipboard.writeText(el.textContent).catch(select); } catch (e) { select(); }
+  });
+})();
+</script>
+
+</body>
+</html>
