@@ -137,6 +137,71 @@ footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
   .ctrl button, .copy, .card, .stat, .skills div { transition: border-color .2s, transform .2s, box-shadow .2s; }
   .card:hover, .skills div:hover { border-color: var(--accent); transform: translateY(-2px); }
 }
+
+/* ---- two-column layout, buttons, print ---- */
+.wrap { max-width: 1120px; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px 48px; align-items: start; }
+.side, .main { min-width: 0; }
+.side h1 { font-size: clamp(2.1rem, 6vw, 2.6rem); }
+.side .hero { padding-block: 40px 8px; }
+.side .skills { grid-template-columns: 1fr; gap: 10px; }
+.side .skills div { padding: 14px 16px; }
+.side .edu .card { padding: 16px 18px; border-radius: 16px; }
+.side .edu h3 { font-size: 1.05rem; }
+.side section { padding-block: 24px 4px; }
+.side h2 { font-size: 1.05rem; margin-bottom: 14px; }
+.main .stats { margin-top: 40px; }
+.main section:first-of-type { padding-top: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;
+  font: 600 15px var(--font-body); color: #fff; padding: 12px 20px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: 0 10px 28px var(--glow);
+}
+html[data-theme="dark"] .btn { color: #07101f; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn { color: #07101f; } }
+.btn:hover { filter: brightness(1.06); }
+@media (min-width: 960px) {
+  .layout { grid-template-columns: 360px minmax(0, 1fr); }
+  .main .stats { margin-top: 40px; }
+}
+@media (min-width: 960px) and (min-height: 900px) {
+  .side { position: sticky; top: 72px; }
+}
+@media (max-width: 959px) { .main .stats { margin-top: 8px; } }
+
+@media print {
+  @page { size: A4; margin: 12mm; }
+  :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+    --bg: #fff; --surface: #fff; --fg: #0f172a; --muted: #475069; --line: #dfe3ec; --accent: #2563eb; --accent-2: #0d9488;
+    --accent-soft: #e8f0ff; --chip: #eef1f7; --shadow: none; --glow: transparent; color-scheme: light;
+  }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #fff; background-image: none; padding: 0; font-size: 11.5px; line-height: 1.55; }
+  header.bar, .btn, .copy, .ctrl { display: none !important; }
+  .wrap { max-width: none; }
+  .layout { grid-template-columns: 62mm minmax(0, 1fr); gap: 0 9mm; }
+  .side { position: static; }
+  .card, .stat, .skills div { box-shadow: none; transition: none; transform: none !important; }
+  .main .card { border: 0; border-radius: 0; padding: 0 0 4mm; background: none; }
+  .main .job { border-bottom: 1px solid var(--line); margin-bottom: 4mm; }
+  .main .job:last-child { border-bottom: 0; }
+  .main .card > p, .card > p { color: var(--fg); }
+  .avatar { box-shadow: none; width: 56px; height: 56px; font-size: 21px; border-radius: 16px; }
+  .side h1 { font-size: 24px; }
+  .hero { gap: 12px; padding-block: 0 4px; }
+  .hero p.lead { font-size: 11.5px; }
+  .contact .item { box-shadow: none; padding: 5px 9px; font-size: 10.5px; word-break: break-all; }
+  .stats { gap: 8px; }
+  .stat { padding: 8px 10px; box-shadow: none; }
+  .stat b { font-size: 18px; }
+  section { padding-block: 10px 2px; }
+  h2 { font-size: 14px; margin-bottom: 8px; }
+  .job h3 { font-size: 13.5px; }
+  .job li, .tags li, .skills div { break-inside: avoid; }
+  .job h3, .job .proj, h2 { break-after: avoid; }
+  .job .meta { margin: 3px 0 8px; }
+  footer { display: none; }
+}
 </style>
 </head>
 <body>
@@ -151,6 +216,8 @@ footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
     </div>
   </header>
 
+  <div class="layout">
+  <aside class="side">
   <div class="hero">
     <div class="avatar" aria-hidden="true">ĐT</div>
     <span class="pill"><span lang="en">Hà Nội, Vietnam</span><span lang="vi">Hà Nội, Việt Nam</span></span>
@@ -163,8 +230,33 @@ footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
       <span class="item"><span id="email">thanhnd2412@gmail.com</span><button type="button" class="copy" id="copy-email"><span lang="en">Copy</span><span lang="vi">Sao chép</span></button></span>
       <span class="item"><span lang="en">Nam Tu Liem, Ha Noi</span><span lang="vi">Nam Từ Liêm, Hà Nội</span></span>
     </div>
+      <a class="btn" id="dl" href="Nguyen-Dang-Thanh-CV-EN.pdf" download>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+      <span lang="en">Download CV (PDF)</span><span lang="vi">Tải CV (PDF)</span>
+    </a>
   </div>
 
+  <section>
+    <h2><span lang="en">Skills</span><span lang="vi">Kỹ năng</span></h2>
+    <dl class="body skills" style="margin:0">
+      <div><dt>Frontend</dt><dd>ReactJS, Bootstrap, TailwindCSS</dd></div>
+      <div><dt><span lang="en">Mobile development</span><span lang="vi">Phát triển di động</span></dt><dd>Flutter, React Native, Android (Kotlin)</dd></div>
+      <div><dt><span lang="en">Tools</span><span lang="vi">Công cụ</span></dt><dd>Git, Figma, Postman</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <h2><span lang="en">Education</span><span lang="vi">Học vấn</span></h2>
+    <div class="body edu">
+      <div class="card">
+        <h3>FPT College</h3>
+        <div class="meta">2023 – 2025 · <span lang="en">Information Technology</span><span lang="vi">Công nghệ thông tin</span></div>
+      </div>
+    </div>
+  </section>
+
+  </aside>
+  <main class="main">
   <div class="stats">
     <div class="stat"><b>6</b><span><span lang="en">Projects</span><span lang="vi">Dự án</span></span></div>
     <div class="stat"><b>2</b><span><span lang="en">Companies</span><span lang="vi">Công ty</span></span></div>
@@ -299,24 +391,8 @@ footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
     </div>
   </section>
 
-  <section>
-    <h2><span lang="en">Skills</span><span lang="vi">Kỹ năng</span></h2>
-    <dl class="body skills" style="margin:0">
-      <div><dt>Frontend</dt><dd>ReactJS, Bootstrap, TailwindCSS</dd></div>
-      <div><dt><span lang="en">Mobile development</span><span lang="vi">Phát triển di động</span></dt><dd>Flutter, React Native, Android (Kotlin)</dd></div>
-      <div><dt><span lang="en">Tools</span><span lang="vi">Công cụ</span></dt><dd>Git, Figma, Postman</dd></div>
-    </dl>
-  </section>
-
-  <section>
-    <h2><span lang="en">Education</span><span lang="vi">Học vấn</span></h2>
-    <div class="body edu">
-      <div class="card">
-        <h3>FPT College</h3>
-        <div class="meta">2023 – 2025 · <span lang="en">Information Technology</span><span lang="vi">Công nghệ thông tin</span></div>
-      </div>
-    </div>
-  </section>
+  </main>
+  </div>
 
   <footer>© 2026 Nguyễn Đăng Thành</footer>
 </div>
@@ -327,11 +403,18 @@ footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
   function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
 
-  var lang = load('lang');
+  var qp = null;
+  try { qp = new URLSearchParams(location.search).get('lang'); } catch (e) {}
+  var lang = (qp === 'en' || qp === 'vi') ? qp : load('lang');
   if (lang !== 'en' && lang !== 'vi') {
     lang = (navigator.language || '').toLowerCase().indexOf('vi') === 0 ? 'vi' : 'en';
   }
-  function setLang(l) { root.setAttribute('data-lang', l); root.setAttribute('lang', l); lang = l; store('lang', l); }
+  var dl = document.getElementById('dl');
+  function setLang(l) {
+    root.setAttribute('data-lang', l); root.setAttribute('lang', l); lang = l;
+    if (!qp) store('lang', l);
+    if (dl) dl.setAttribute('href', 'Nguyen-Dang-Thanh-CV-' + l.toUpperCase() + '.pdf');
+  }
   setLang(lang);
   document.getElementById('btn-lang').addEventListener('click', function () { setLang(lang === 'en' ? 'vi' : 'en'); });
 
