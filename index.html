@@ -92,11 +92,6 @@ h1 .role { display: block; font-weight: 700; font-size: .5em; letter-spacing: -.
 .copy { font: 500 12px var(--font-body); background: var(--accent-soft); color: var(--accent); border: 0; padding: 3px 10px; border-radius: 999px; cursor: pointer; }
 .copy:hover { filter: brightness(.96); }
 
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-bottom: 20px; }
-.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow); }
-.stat b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.75rem; line-height: 1.1; letter-spacing: -.02em; }
-.stat span { color: var(--muted); font-size: 14px; }
-
 section { display: block; padding-block: 28px 8px; }
 h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: -.02em; margin: 0 0 18px; display: flex; align-items: center; gap: 12px; }
 h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
@@ -130,11 +125,9 @@ footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
   .skills { grid-template-columns: 1fr; }
   .hero { padding-block: 36px 32px; }
   .card { padding: 20px; border-radius: 16px; }
-  .stat { padding: 14px; }
-  .stat b { font-size: 1.4rem; }
 }
 @media (prefers-reduced-motion: no-preference) {
-  .ctrl button, .copy, .card, .stat, .skills div { transition: border-color .2s, transform .2s, box-shadow .2s; }
+  .ctrl button, .copy, .card, .skills div { transition: border-color .2s, transform .2s, box-shadow .2s; }
   .card:hover, .skills div:hover { border-color: var(--accent); transform: translateY(-2px); }
 }
 
@@ -150,8 +143,7 @@ footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line);
 .side .edu h3 { font-size: 1.05rem; }
 .side section { padding-block: 24px 4px; }
 .side h2 { font-size: 1.05rem; margin-bottom: 14px; }
-.main .stats { margin-top: 40px; }
-.main section:first-of-type { padding-top: 12px; }
+.main section:first-of-type { padding-top: 40px; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer;
   font: 600 15px var(--font-body); color: #fff; padding: 12px 20px; border-radius: 14px;
@@ -162,12 +154,11 @@ html[data-theme="dark"] .btn { color: #07101f; }
 .btn:hover { filter: brightness(1.06); }
 @media (min-width: 960px) {
   .layout { grid-template-columns: 360px minmax(0, 1fr); }
-  .main .stats { margin-top: 40px; }
-}
+  }
 @media (min-width: 960px) and (min-height: 900px) {
   .side { position: sticky; top: 72px; }
 }
-@media (max-width: 959px) { .main .stats { margin-top: 8px; } }
+@media (max-width: 959px) { .main section:first-of-type { padding-top: 8px; } }
 
 @media print {
   @page { size: A4; margin: 12mm; }
@@ -181,7 +172,7 @@ html[data-theme="dark"] .btn { color: #07101f; }
   .wrap { max-width: none; }
   .layout { grid-template-columns: 62mm minmax(0, 1fr); gap: 0 9mm; }
   .side { position: static; }
-  .card, .stat, .skills div { box-shadow: none; transition: none; transform: none !important; }
+  .card, .skills div { box-shadow: none; transition: none; transform: none !important; }
   .main .card { border: 0; border-radius: 0; padding: 0 0 4mm; background: none; }
   .main .job { border-bottom: 1px solid var(--line); margin-bottom: 4mm; }
   .main .job:last-child { border-bottom: 0; }
@@ -191,9 +182,6 @@ html[data-theme="dark"] .btn { color: #07101f; }
   .hero { gap: 12px; padding-block: 0 4px; }
   .hero p.lead { font-size: 11.5px; }
   .contact .item { box-shadow: none; padding: 5px 9px; font-size: 10.5px; word-break: break-all; }
-  .stats { gap: 8px; }
-  .stat { padding: 8px 10px; box-shadow: none; }
-  .stat b { font-size: 18px; }
   section { padding-block: 10px 2px; }
   h2 { font-size: 14px; margin-bottom: 8px; }
   .job h3 { font-size: 13.5px; }
@@ -257,12 +245,6 @@ html[data-theme="dark"] .btn { color: #07101f; }
 
   </aside>
   <main class="main">
-  <div class="stats">
-    <div class="stat"><b>6</b><span><span lang="en">Projects</span><span lang="vi">Dự án</span></span></div>
-    <div class="stat"><b>2</b><span><span lang="en">Companies</span><span lang="vi">Công ty</span></span></div>
-    <div class="stat"><b>3</b><span><span lang="en">Mobile Stacks</span><span lang="vi">Nền tảng Mobile</span></span></div>
-  </div>
-
   <section>
     <h2><span lang="en">About</span><span lang="vi">Giới thiệu</span></h2>
     <div class="body">
